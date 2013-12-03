@@ -1,0 +1,7 @@
+#!/bin/sh
+
+JAVA_HOME=<%= scope.lookupvar('java::jdk::jdk_path') %>
+JRE_HOME=$JAVA_HOME
+JDK_HOME=<%= scope.lookupvar('java::jdk::jdk_path') %>
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME JDK_HOME JRE_HOME PATH 
