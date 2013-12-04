@@ -84,6 +84,6 @@ This module is provided without warranty of any kind, the creator(s) and contrib
 Contributors
 ------------
 
-* [Diego Gutierrez](https://github.com/dgutierrez1287) )
+* [Diego Gutierrez](https://github.com/dgutierrez1287)
 
 
