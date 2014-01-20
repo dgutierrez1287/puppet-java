@@ -24,7 +24,7 @@
 		<link>
 			<name>modules</name>
 			<type>2</type>
-			<location>C:/cygwin/home/dgutierrez/workspace-gepetto/modules</location>
+			<location>/home/diego/workspace-geppetto/modules</location>
 		</link>
 	</linkedResources>
 </projectDescription>

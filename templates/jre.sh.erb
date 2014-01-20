@@ -1,0 +1,8 @@
+#!/bin/sh
+
+<% if @jdkpath == '' %>JAVA_HOME=<%= scope.lookupvar('openjre_path') %>
+<% else %>JAVA_HOME=<%= scope.lookupvar('jrepath') %>
+<% end %>
+JRE_HOME=$JAVA_HOME
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME JRE_HOME PATH 
