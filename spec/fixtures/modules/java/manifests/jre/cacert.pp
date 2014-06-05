@@ -1,7 +1,7 @@
 #define java::jre::cacert
 #
 # this define will allow you to push a custom
-# cacert to a jre install 
+# cacert to a jre install
 #
 # Parameters:
 # cacertpath(title) - the path to the cacert file that you would like installed
@@ -21,12 +21,12 @@ define java::jre::cacert (
   $jrepath = '',
   $openjre_version = 6,
 ){
-  
+
   # validate parameters
   validate_string($cacertpath)
   validate_string($owner)
   validate_string($group)
-  
+
   # check size of parameters
   if size($cacertpath) == 0 {
     fail('ERROR: cacertpath cannot be empty')
@@ -37,48 +37,46 @@ define java::jre::cacert (
   if size($group) == 0 {
     fail('ERROR: group cannot be empty')
   }
-  
+
   # make sure that ensure has to be set to present or absent
   if ! ($ensure in [ 'present', 'absent' ]) {
     fail('ERROR: the ensure must be either present or absent')
   }
-  
+
   if $jrepath == '' {
-        
     # fail if the openjdk_version is not a number
     if ! is_integer($openjre_version) {
       fail('ERROR: openjdk_version must be a number')
     }
-    
+
     # set jdk_path based on jre_version and osfamily
     # if the jre version is 6
     if $openjre_version == 6 {
-      
       # set jdk_path based on osfamily
-      case $osfamily {
-        # if the osfamily is redhat 
+      case $::osfamily {
+        # if the osfamily is redhat
         'RedHat': {
           #$jrepath = "/usr/lib/jvm/jre-1.6.0"
-         
+
           # push out the cacert file
-          file { "/usr/lib/jvm/jre-1.6.0/jre/lib/security/cacerts":
-            owner => $owner,
-            group => $group,
-            mode => $mode,
+          file { '/usr/lib/jvm/jre-1.6.0/jre/lib/security/cacerts':
             ensure => $ensure,
+            owner  => $owner,
+            group  => $group,
+            mode   => $mode,
             source => $cacertpath,
           }
         }
         # if the osfamily is debian
         'Debian': {
           #$jrepath = "/usr/lib/jvm/java-1.6.0-openjdk"
-          
+
           # push out the cacert file
-          file { "/usr/lib/jvm/java-1.6.0-openjdk/jre/lib/security/cacerts":
-            owner => $owner,
-            group => $group,
-            mode => $mode,
+          file { '/usr/lib/jvm/java-1.6.0-openjdk/jre/lib/security/cacerts':
             ensure => $ensure,
+            owner  => $owner,
+            group  => $group,
+            mode   => $mode,
             source => $cacertpath,
           }
         }
@@ -91,30 +89,30 @@ define java::jre::cacert (
     # if the jre version is 7
     elsif $openjre_version == 7 {
       # set jrepath based on osfamily
-      case $osfamily {
-        # if the osfamily is redhat 
+      case $::osfamily {
+        # if the osfamily is redhat
         'RedHat': {
           #$jrepath = "/usr/lib/jvm/jre-1.7.0"
-          
+
           # push out the cacert file
-          file { "/usr/lib/jvm/jre-1.7.0/jre/lib/security/cacerts":
-            owner => $owner,
-            group => $group,
-            mode => $mode,
+          file { '/usr/lib/jvm/jre-1.7.0/jre/lib/security/cacerts;':
             ensure => $ensure,
+            owner  => $owner,
+            group  => $group,
+            mode   => $mode,
             source => $cacertpath,
           }
         }
         # if the osfamily is debian
         'Debian': {
           #$jrepath = "/usr/lib/jvm/java-1.7.0-openjdk"
-          
+
           # push out the cacert file
-          file { "/usr/lib/jvm/java-1.7.0-openjdk/jre/lib/security/cacerts":
-            owner => $owner,
-            group => $group,
-            mode => $mode,
+          file { '/usr/lib/jvm/java-1.7.0-openjdk/jre/lib/security/cacerts':
             ensure => $ensure,
+            owner  => $owner,
+            group  => $group,
+            mode   => $mode,
             source => $cacertpath,
           }
         }
@@ -132,10 +130,10 @@ define java::jre::cacert (
   else {
     # push out the cacert file
     file { "${jrepath}/jre/lib/security/cacerts":
-      owner => $owner,
-      group => $group,
-      mode => $mode,
       ensure => $ensure,
+      owner  => $owner,
+      group  => $group,
+      mode   => $mode,
       source => $cacertpath,
     }
   }
